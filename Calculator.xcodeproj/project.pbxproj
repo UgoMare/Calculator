@@ -112,8 +112,6 @@
 		EC6CFD3C1981934300D9B334 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
-				EC6CFD451981934300D9B334 /* AppDelegate.h */,
-				EC6CFD461981934300D9B334 /* AppDelegate.m */,
 				EC6CFD481981934300D9B334 /* Main.storyboard */,
 				EC6CFD4B1981934300D9B334 /* ViewController.h */,
 				EC6CFD4C1981934300D9B334 /* ViewController.m */,
@@ -126,6 +124,8 @@
 		EC6CFD3D1981934300D9B334 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EC6CFD451981934300D9B334 /* AppDelegate.h */,
+				EC6CFD461981934300D9B334 /* AppDelegate.m */,
 				EC6CFD3E1981934300D9B334 /* Calculator-Info.plist */,
 				EC6CFD3F1981934300D9B334 /* InfoPlist.strings */,
 				EC6CFD421981934300D9B334 /* main.m */,
@@ -456,6 +456,7 @@
 				EC6CFD671981934300D9B334 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EC6CFD681981934300D9B334 /* Build configuration list for PBXNativeTarget "CalculatorTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +465,7 @@
 				EC6CFD6A1981934300D9B334 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
