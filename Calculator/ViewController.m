@@ -8,95 +8,160 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
-
+@interface ViewController (){
+    NSString *stack;
+    int optype;
+    double result;
+}
 @end
 
 @implementation ViewController
+@synthesize resultLabel, operatorLabel;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    stack = @"0";
+    result = 0;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
--(void)editResult:(NSString*) idButton {
-    if ([idButton isEqual:@"+"] || [idButton isEqual:@"-"] || [idButton isEqual:@"*"] || [idButton isEqual:@"/"]){
-        NSLog(@"math op");
+-(void)editNumber:(int)number{
+    if ([stack  isEqual: @"0"])
+        stack = @"";
+    if (number == -1){
+        stack = [stack substringToIndex:[stack length] -1];
     }
-    if ([self.resultLabel.text  isEqual: @"0"]){
-        self.resultLabel.text = [NSString stringWithFormat:@"%@", idButton];
-    }
-    else{
-        self.resultLabel.text = [NSString stringWithFormat:@"%@%@", self.resultLabel.text, idButton];
-    }
+    else {
+        stack = [NSString stringWithFormat:@"%1$@%2$d", stack, number];
+        }
+    [resultLabel setText:stack];
 }
+
+-(void) addDot{
+    stack = [NSString stringWithFormat:@"%1$@.", stack];
+    [resultLabel setText:stack];
+
+}
+
+-(void) clear{
+    stack = @"0";
+    result = 0.0;
+    optype = -1;
+    [resultLabel setText:stack];
+    [operatorLabel setText:@""];
+}
+
+#pragma - Operators
+
+-(void)operators:(int)op {
+    if (op == 0){ //=
+//        if (op == 1) {
+//        }
+//        else if (op == 2){
+//        }
+//        else if (op == 3){
+//        }
+//        else if (op == 4){
+//        }
+    }
+    else {
+//        if (op == 1) {
+//            [operatorLabel setText:@"+"];
+//        }
+//        else if (op == 2){
+//            [operatorLabel setText:@"-"];
+//        }
+//        else if (op == 3){
+//            [operatorLabel setText:@"*"];
+//        }
+//        else if (op == 4){
+//            [operatorLabel setText:@"/"];
+//        }
+//        optype = op;
+//        result = [stack doubleValue];
+//        stack = @"0";
+//        [resultLabel setText:stack];
+    }
+    
+}
+
+#pragma - Buttons
 
 - (IBAction)button1 {
-    [self editResult:@"1"];
+    [self editNumber:1];
 }
 
 - (IBAction)button2 {
-    [self editResult:@"2"];
+    [self editNumber:2];
 }
 
 - (IBAction)button3 {
-    [self editResult:@"3"];
+    [self editNumber:3];
 }
 
 - (IBAction)button4{
-    [self editResult:@"4"];
+    [self editNumber:4];
 }
+
 - (IBAction)button5 {
-    [self editResult:@"5"];
+    [self editNumber:5];
 }
 
 - (IBAction)button6 {
-    [self editResult:@"6"];
+    [self editNumber:6];
 }
 
 - (IBAction)button7 {
-    [self editResult:@"7"];
+    [self editNumber:7];
 }
 
 - (IBAction)button8 {
-    [self editResult:@"8"];
+    [self editNumber:8];
 }
 
 - (IBAction)button9 {
-    [self editResult:@"9"];
+    [self editNumber:9];
 }
 
 - (IBAction)button0 {
-    [self editResult:@"0"];
+    [self editNumber:0];
+}
+
+- (IBAction)dot {
+    [self addDot];
 }
 
 - (IBAction)buttonEqual {
+    [self operators:0];
 }
 
 - (IBAction)buttonPlus {
-    [self editResult:@"+"];
+    [self operators:1];
 }
 
 - (IBAction)buttonMinus {
-    [self editResult:@"-"];
+    [self operators:2];
 }
 
 - (IBAction)buttonMult {
-    [self editResult:@"*"];
+    [self operators:3];
 }
 
 - (IBAction)buttonDiv {
-    [self editResult:@"/"];
+    [self operators:4];
 }
 
+- (IBAction)remove {
+    [self editNumber:-1];
+}
+
+
 - (IBAction)buttonC {
-    self.resultLabel.text = @"0";
+    [self clear];
 }
 @end

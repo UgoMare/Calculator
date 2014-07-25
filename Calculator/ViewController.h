@@ -10,6 +10,7 @@
 
 @interface ViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UILabel *resultLabel;
+@property (strong, nonatomic) IBOutlet UILabel *operatorLabel;
 - (IBAction)button1;
 - (IBAction)button2;
 - (IBAction)button3;
@@ -25,8 +26,11 @@
 - (IBAction)buttonMinus;
 - (IBAction)buttonMult;
 - (IBAction)buttonDiv;
+- (IBAction)remove;
+- (IBAction)dot;
+
 - (IBAction)buttonC;
 
--(void) editResult:(NSString*) idButton;
+-(void) editNumber:(int) number;
 
 @end
