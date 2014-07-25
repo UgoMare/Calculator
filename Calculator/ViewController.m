@@ -33,19 +33,28 @@
     [super didReceiveMemoryWarning];
 }
 
+-(void)correct:(int)corr{
+    if (corr == -1){
+        if (![stack  isEqual: @"0"]){
+            if ([stack length] -1 > 0){
+                stack = [stack substringToIndex:[stack length] -1];
+            }
+            else{
+                stack = @"0";
+            }
+        [resultLabel setText:stack];
+        }
+        }
+}
+
 -(void)editNumber:(int)number{
     if ([stack  isEqual: @"0"])
         stack = @"";
-    if (number == -1){
-        stack = [stack substringToIndex:[stack length] -1];
-    }
-    else {
         if (newOp == true){
             stack = @"";
             newOp = false;
         }
         stack = [NSString stringWithFormat:@"%1$@%2$d", stack, number];
-        }
     [resultLabel setText:stack];
 }
 
@@ -191,7 +200,7 @@
 }
 
 - (IBAction)remove {
-    [self editNumber:-1];
+    [self correct:-1];
 }
 
 
