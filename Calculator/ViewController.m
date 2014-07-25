@@ -12,6 +12,7 @@
     NSString *stack;
     int optype;
     double result;
+    bool newOp;
 }
 @end
 
@@ -23,6 +24,8 @@
     [super viewDidLoad];
     stack = @"0";
     result = 0;
+    optype = -1;
+    newOp = false;
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,6 +40,10 @@
         stack = [stack substringToIndex:[stack length] -1];
     }
     else {
+        if (newOp == true){
+            stack = @"";
+            newOp = false;
+        }
         stack = [NSString stringWithFormat:@"%1$@%2$d", stack, number];
         }
     [resultLabel setText:stack];
@@ -50,7 +57,7 @@
 
 -(void) clear{
     stack = @"0";
-    result = 0.0;
+    result = 0;
     optype = -1;
     [resultLabel setText:stack];
     [operatorLabel setText:@""];
@@ -60,32 +67,59 @@
 
 -(void)operators:(int)op {
     if (op == 0){ //=
-//        if (op == 1) {
-//        }
-//        else if (op == 2){
-//        }
-//        else if (op == 3){
-//        }
-//        else if (op == 4){
-//        }
+        if (optype == 1) {
+        stack = [NSString stringWithFormat:@"%0g", [stack doubleValue]+result];
+        }
+        else if (optype == 2){
+            stack = [NSString stringWithFormat:@"%g", [stack doubleValue]-result];
+
+        }
+        else if (optype == 3){
+            stack = [NSString stringWithFormat:@"%g", [stack doubleValue]*result];
+        }
+        else if (optype == 4){
+            stack = [NSString stringWithFormat:@"%g", [stack doubleValue]/result];
+        }
+//        NSLog(@"%@", stack);
+        [resultLabel setText:stack];
+        [operatorLabel setText:@""];
+        optype = -1;
     }
     else {
-//        if (op == 1) {
-//            [operatorLabel setText:@"+"];
-//        }
-//        else if (op == 2){
-//            [operatorLabel setText:@"-"];
-//        }
-//        else if (op == 3){
-//            [operatorLabel setText:@"*"];
-//        }
-//        else if (op == 4){
-//            [operatorLabel setText:@"/"];
-//        }
-//        optype = op;
-//        result = [stack doubleValue];
-//        stack = @"0";
-//        [resultLabel setText:stack];
+        newOp = true;
+        if (optype != -1){
+            if (optype == 1) {
+                stack = [NSString stringWithFormat:@"%g", [stack doubleValue]+result];
+            }
+            else if (optype == 2){
+                stack = [NSString stringWithFormat:@"%g", [stack doubleValue]-result];
+            }
+            else if (optype == 3){
+                stack = [NSString stringWithFormat:@"%g", [stack doubleValue]*result];
+            }
+            else if (optype == 4){
+                stack = [NSString stringWithFormat:@"%g", [stack doubleValue]/result];
+            }
+        }
+        NSLog(@"%@", [NSString stringWithFormat:@"%g",result]);
+        if (op == 1) {
+            [operatorLabel setText:@"+"];
+          }
+        else if (op == 2){
+            [operatorLabel setText:@"-"];
+        }
+        else if (op == 3){
+            [operatorLabel setText:@"*"];
+        }
+        else if (op == 4){
+            [operatorLabel setText:@"/"];
+        }
+        optype = op;
+        result = [stack doubleValue];
+//        if (result != 0)
+//            stack = [NSString stringWithFormat:@"%f",result];
+        //result = 0;
+        [resultLabel setText: stack];
     }
     
 }
