@@ -42,9 +42,9 @@
             else{
                 stack = @"0";
             }
-        [resultLabel setText:stack];
+            [resultLabel setText:stack];
         }
-        }
+    }
 }
 
 -(void)editNumber:(int)number{
